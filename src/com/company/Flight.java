@@ -1,14 +1,16 @@
 package com.company;
 
 public class Flight {
-    public String flightNumber;
-    public String airline;
+    private String flightNumber;
+    private String airline;
     private int bookedSeats;
+    private int capacity;
 
-    Flight(String flightNumber, String airline, int bookedSeats){
+    public Flight(String flightNumber, String airline, int capacity) {
         this.flightNumber = flightNumber;
         this.airline = airline;
-        this.bookedSeats = bookedSeats;
+        this.bookedSeats = 0;
+        this.capacity = capacity;
     }
 
     public Flight() {
@@ -22,16 +24,42 @@ public class Flight {
     }
 
     public boolean checkAvailability() {
-        if(bookedSeats >= 1) {
-
+        if(bookedSeats == capacity) {
+            return false;
+        } else {
+            return true;
         }
-        return true;
+
     }
 
     public int incrementBookingCounter() {
         bookedSeats += 1;
 
-        return 0;
+        return bookedSeats;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
+
+    public String getAirline() {
+        return airline;
+    }
+
+    public void setAirline(String airline) {
+        this.airline = airline;
+    }
+
+    public int getBookedSeats() {
+        return bookedSeats;
+    }
+
+    public void setBookedSeats(int bookedSeats) {
+        this.bookedSeats = bookedSeats;
     }
 }
 

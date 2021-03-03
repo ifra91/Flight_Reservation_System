@@ -1,16 +1,28 @@
 package com.company;
 
-public class TouristTicket extends Ticket{
-    public String hotelAddress;
-    public String[] selectedTouristLocation;
+import java.util.Date;
 
-    public TouristTicket(String hotelAddress, String[] selectedTouristLocation) {
-        this.hotelAddress = hotelAddress;
+public class TouristTicket extends Ticket{
+    private String hotelAddress;
+    private String[] selectedTouristLocation;
+//    private Flight flight;
+
+    public TouristTicket(Flight f, Passenger p, String from, String to, Date arrivalDateTime, Date departureDateTime, float price, String seatNo, String hotelAddress, String[] selectedTouristLocation) {
+        super(f, p,  from, to, arrivalDateTime, departureDateTime, price, seatNo);
         this.selectedTouristLocation = selectedTouristLocation;
+        this .hotelAddress = hotelAddress;
     }
 
-    public TouristTicket() {
+    public void setHotelAddress(String hotelAddress) {
+        this.hotelAddress = hotelAddress;
+    }
 
+    public String[] getSelectedTouristLocation() {
+        return selectedTouristLocation;
+    }
+
+    public void setSelectedTouristLocation(String[] selectedTouristLocation) {
+        this.selectedTouristLocation = selectedTouristLocation;
     }
 
 
