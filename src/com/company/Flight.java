@@ -61,5 +61,10 @@ public class Flight {
     public void setBookedSeats(int bookedSeats) {
         this.bookedSeats = bookedSeats;
     }
+
+    public void getBookedSeatCancellation(int bookedSeats){
+        bookedSeats = bookedSeats-1;
+
+    }
 }
 

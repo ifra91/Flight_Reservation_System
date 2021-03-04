@@ -2,6 +2,10 @@ package com.company;
 
 import java.util.Date;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -23,14 +27,21 @@ public class Main {
         System.out.println(passenger.getName());
 
 
-        RegularTicket r = new RegularTicket(flight, passenger, "bhopal", "kanpur", d2, d1, 2000, "seat1");
-        String[] locations = {"a", "b"};
-        TouristTicket t = new TouristTicket(flight, passenger, "bhopal", "kanpur", d2, d1, 2000, "seat2", "taj", locations);
+
+        RegularTicket r = new RegularTicket(flight, passenger, "bhopal", "kanpur", d2, d1, 2000, "seat1", false);
+        System.out.println("Opted for Special Services: "+ r.getSpecialServices());
+        String[] location = {"a", "b"};
+        TouristTicket t = new TouristTicket(flight, passenger, "bhopal", "kanpur", d2, d1, 2000, "seat2", "taj", location);
         printTicketDetails(r);
         printTicketDetails(t);
 
-        System.out.println(r.getSpecialServices());
-        System.out.println(t.getSelectedTouristLocation());
+
+
+        System.out.println(t.checkStatusOfFLight());
+        System.out.println(t.checkStatus());
+
+
+
 
     }
     public static void printTicketDetails(Ticket ticket){

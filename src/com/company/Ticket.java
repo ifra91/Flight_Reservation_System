@@ -22,13 +22,14 @@ public abstract class Ticket {
         this.to = to;
         this.arrivalDateTime = arrivalDateTime;
         this.departureDateTime = departureDateTime;
-        if (checkStatus().equals("Available")) {
+        this.cancelled = false;
+        if (checkStatusOfFLight().equals("Available")) {
             this.seatNo = seatNo;
             this.price = price;
             this.flight.incrementBookingCounter();
             this.pnr = p.getName() + p.getEmail() + p.getPassengerCount();
-
         }
+       this.cancel();
     }
 
     public void setDepartureDateTime(Date departureDateTime) {
@@ -39,7 +40,8 @@ public abstract class Ticket {
         this.arrivalDateTime = arrivalDateTime;
     }
 
-    public String checkStatus() {
+
+    public String checkStatusOfFLight() {
         boolean isAvailable = this.flight.checkAvailability();
         if (isAvailable) {
             return "Available";
@@ -49,6 +51,18 @@ public abstract class Ticket {
 
     }
 
+    public String checkStatus() {
+        if(cancelled == true) {
+            return "Ticket for Flight:" + flight.getFlightNumber()+ " is cancelled";
+        } else {
+            if (this.pnr != null) {
+                return "Fight confirmed for " + this.pnr;
+            } else {
+                return "Fight not booked";
+            }
+        }
+    }
+
     public long getFlightDuration(){
         long diffInMillis = Math.abs(arrivalDateTime.getTime() - departureDateTime.getTime());
         long diff = TimeUnit.MINUTES.convert(diffInMillis, TimeUnit.MILLISECONDS);
@@ -56,12 +70,7 @@ public abstract class Ticket {
     }
 
     public void cancel() {
-        if (this.cancelled == true) {
-            System.out.println("Flight is cancelled");
-        } else {
-            System.out.println(flight + ": No changes");
-        }
-
+        this.cancelled = true;
     }
 
     public String getPnr() {
@@ -135,4 +144,5 @@ public abstract class Ticket {
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
     }
+
 }
